@@ -17,6 +17,7 @@ namespace ToDoApp.API.StartupConfig
 
             services.AddTransient<IBCryptService, BCryptService>();
             services.AddTransient<IRegistrationService, RegistrationService>();
+            services.AddTransient<IUsersService, UsersService>();
         }
     }
 }
