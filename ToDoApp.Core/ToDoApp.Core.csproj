@@ -8,4 +8,10 @@
     <ProjectReference Include="..\ToDoApp.Data\ToDoApp.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="Infrastracture\JWT\" />
+    <Folder Include="Infrastracture\Requests\" />
+  </ItemGroup>
+
 </Project>

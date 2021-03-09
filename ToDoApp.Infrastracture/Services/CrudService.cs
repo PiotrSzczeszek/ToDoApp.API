@@ -19,22 +19,28 @@ namespace ToDoApp.Infrastracture.Services
             _context = context;
         }
 
-        public Task<bool> CreateAsync(TEntity entity)
+        public async Task<bool> CreateAsync(TEntity entity)
         {
             _context.Add(entity);
             _context.SaveChanges();
             
-            return Task.FromResult(true);
+            return true;
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task<bool> DeleteAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task<bool> UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

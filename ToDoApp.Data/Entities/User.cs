@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RolePlayManager.Api.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ToDoApp.Data.Entities
         public string Email { get; set; }
         public DateTime AccountCreated { get; set; }
         public bool Active { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; }
 
     }
 

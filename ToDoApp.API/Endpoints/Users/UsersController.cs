@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApp.Core.Services;
@@ -21,7 +22,7 @@ namespace ToDoApp.API.Endpoints.Users
             _usersService = usersService;
         }
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<ICollection<User>>> GetUsersAsync()
         {

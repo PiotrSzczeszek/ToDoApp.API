@@ -15,8 +15,8 @@ namespace ToDoApp.Core.Services
 
         //CREATE, UPDATE, DELETE:
         Task<bool> CreateAsync(TEntity entity);
-        Task UpdateAsync(TEntity entity);
-        Task DeleteAsync(TEntity entity);
+        Task<bool> UpdateAsync(TEntity entity);
+        Task<bool> DeleteAsync(TEntity entity);
 
 
     }

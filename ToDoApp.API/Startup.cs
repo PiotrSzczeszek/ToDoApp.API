@@ -33,7 +33,7 @@ namespace ToDoApp.API
             services.ConfigureAppDatabase(Configuration);
             services.ConfigureServices();
             services.ConfigureApiMapper();
-
+            services.ConfigureAppAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +48,7 @@ namespace ToDoApp.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
