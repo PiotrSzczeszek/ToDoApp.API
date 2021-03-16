@@ -30,12 +30,19 @@ namespace ToDoApp.API.Endpoints.Todo
 
         }
 
+
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet]
         public string xd()
         {
             return "XD";
         }
 
+
+        /// <summary>
+        /// Returns all todos in database
+        /// </summary>
+        /// <returns>All todods inside db</returns>
         [HttpGet("all")]
         [Authorize]
         public async Task<ActionResult<ICollection<ToDo>>> GetAllTodosAsync()
@@ -45,6 +52,10 @@ namespace ToDoApp.API.Endpoints.Todo
             return Ok(todos);
         }
 
+        /// <summary>
+        /// Gets current user's todos
+        /// </summary>
+        /// <returns>List of todos of a current user</returns>
         [HttpGet("my")]
         [Authorize]
         public async Task<ActionResult<ICollection<ToDo>>> GetUsersTodosAsync()
@@ -56,6 +67,13 @@ namespace ToDoApp.API.Endpoints.Todo
 
         }
 
+        /// <summary>
+        /// Adds a new Todo as current user
+        /// </summary>
+        /// <param name="todoRequest"></param>
+        /// <returns>No content</returns>
+        /// <response code="204">Todo added successfully</response>
+        /// <response code="400">Bad request - incomplete info</response>
         [HttpPost("add")]
         [Authorize]
         public async Task<ActionResult<bool>> AddTodo(TodoRequest todoRequest)

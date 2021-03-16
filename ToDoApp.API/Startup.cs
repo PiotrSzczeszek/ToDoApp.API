@@ -36,6 +36,8 @@ namespace ToDoApp.API
             services.ConfigureServices();
             services.ConfigureApiMapper();
             services.ConfigureAppAuthentication(Configuration);
+
+            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +51,14 @@ namespace ToDoApp.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwagger(); 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
 
             app.UseAuthentication();
             app.UseAuthorization();

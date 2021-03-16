@@ -22,6 +22,12 @@ namespace ToDoApp.API.Endpoints.Users
             _usersService = usersService;
         }
 
+        /// <summary>
+        /// Gets all registered users
+        /// </summary>
+        /// <returns>List of every user in database</returns>
+        /// <response code="200">List of all users</response>
+        /// <response code="401">Unauthorized - user not logged in</response>
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<ICollection<User>>> GetUsersAsync()

@@ -27,6 +27,21 @@ namespace ToDoApp.API.Endpoints
             _registrationService = registrationService;
         }
 
+        /// <summary>
+        /// Registers a new user
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     POST /api/registration
+        ///     {
+        ///         "UserName": "username",
+        ///         "Email": "address@mail.com",
+        ///         "password": "str0ngPassword!"
+        ///     }
+        /// </remarks>
+        /// <param name="registrationRequest"></param>
+        /// <returns>True if registration completes</returns>
         [HttpPost]
         public async Task<ActionResult<bool>> Register(RegistrationRequest registrationRequest)
         {
