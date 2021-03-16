@@ -13,7 +13,7 @@ namespace ToDoApp.Core.Services
         public Task<bool> AddUserAsync(User user);
         public Task<bool> RemoveUserAsync(string id);
         public Task<bool> UpdateUserAsync(string id, User user);
-
+        public Task<User> GetCurrentUserAsync();
 
     }
 }

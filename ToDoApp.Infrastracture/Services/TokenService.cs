@@ -63,13 +63,8 @@ namespace ToDoApp.Infrastracture.Services
         {
             var databaseToken = await _tokens.GetEntities.SingleOrDefaultAsync(e => e.User == user && e.Token == token && DateTime.UtcNow < e.ValidUntil);
 
-            if (databaseToken != null)
-            {
-                //await _tokens.SaveChangesAsync();
-                return true;
-            }
-
-            return false;
+            return databaseToken != null;
         }
+
     }
 }

@@ -30,6 +30,8 @@ namespace ToDoApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpContextAccessor();
+
             services.ConfigureAppDatabase(Configuration);
             services.ConfigureServices();
             services.ConfigureApiMapper();

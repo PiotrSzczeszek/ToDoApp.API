@@ -3,9 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using ToDoApp.Core.Options;
 
 namespace ToDoApp.API.StartupConfig
@@ -57,6 +55,9 @@ namespace ToDoApp.API.StartupConfig
                 });
             });
         }
+
+        public static string GetUserId(this ClaimsPrincipal user) => user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
     }
 }
 
