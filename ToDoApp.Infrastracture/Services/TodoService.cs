@@ -24,9 +24,9 @@ namespace ToDoApp.Infrastracture.Services
             return await _crudService.CreateAsync(todo);
         }
 
-        public Task<ToDo> GetToDoAsync(string id)
+        public async Task<ToDo> GetToDoAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _crudService.GetEntities.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<ICollection<ToDo>> GetToDosAsync()
@@ -40,14 +40,14 @@ namespace ToDoApp.Infrastracture.Services
 
         }
 
-        public Task<bool> RemoveTodoAsync(ToDo todo)
+        public async Task<bool> RemoveTodoAsync(ToDo todo)
         {
-            throw new NotImplementedException();
+            return await _crudService.DeleteAsync(todo);
         }
 
-        public Task<bool> UpdateTodoAsync(ToDo todo)
+        public async Task<bool> UpdateTodoAsync(ToDo todo)
         {
-            throw new NotImplementedException();
+            return await _crudService.UpdateAsync(todo);
         }
     }
 }

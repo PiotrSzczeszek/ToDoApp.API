@@ -39,6 +39,7 @@ namespace ToDoApp.API.Endpoints.Authentication
         /// </summary>
         /// <remarks>
         /// Sample request:
+        /// 
         ///     POST /api/auth/password
         ///     {
         ///         "UserName" : "admin"
@@ -68,6 +69,7 @@ namespace ToDoApp.API.Endpoints.Authentication
         /// </summary>
         /// <remarks>
         /// Sample request:
+        /// 
         ///     POST /api/auth/token
         ///     {
         ///         "UserName" : "admin"

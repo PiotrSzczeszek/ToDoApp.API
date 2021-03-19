@@ -19,23 +19,21 @@ namespace ToDoApp.API.Endpoints.Todo
         private readonly ITodoService _todoService;
         private readonly IUsersService _usersService;
         private readonly IMapper _mapper;
-        private readonly string currentUserId;
-        public TodoController(ITodoService todoService, IUsersService usersService, IMapper mapper)
+        private readonly ITaskService _taskService;
+        public TodoController(ITodoService todoService, IUsersService usersService, IMapper mapper, ITaskService taskService)
         {
             _todoService = todoService;
             _usersService = usersService;
             _mapper = mapper;
-
-            //currentUserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+            _taskService = taskService;
         }
 
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpGet]
-        public string xd()
+        [HttpGet("{id}/xd")]
+        public string xd(int id)
         {
-            return "XD";
+            return $"id to: {id} XD";
         }
 
 
@@ -70,6 +68,14 @@ namespace ToDoApp.API.Endpoints.Todo
         /// <summary>
         /// Adds a new Todo as current user
         /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     {
+        ///         "Title": "sample title",
+        ///         "DueDate": "2020-01-09 12:03:00"
+        ///     }
+        /// </remarks>
         /// <param name="todoRequest"></param>
         /// <returns>No content</returns>
         /// <response code="204">Todo added successfully</response>
@@ -91,5 +97,6 @@ namespace ToDoApp.API.Endpoints.Todo
 
             return BadRequest();
         }
+
     }
 }

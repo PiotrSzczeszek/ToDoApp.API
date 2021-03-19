@@ -21,6 +21,7 @@ namespace ToDoApp.API.StartupConfig
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<ITodoService, TodoService>();
+            services.AddTransient<ITaskService, TaskService>();
         }
     }
 }
