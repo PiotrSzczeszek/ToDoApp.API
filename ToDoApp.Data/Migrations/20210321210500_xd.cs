@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ToDoApp.Data.Migrations
 {
-    public partial class Final : Migration
+    public partial class xd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace ToDoApp.Data.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(36)", unicode: false, maxLength: 36, nullable: false, defaultValueSql: "NEWID()"),
                     Username = table.Column<string>(type: "varchar(40)", unicode: false, maxLength: 40, nullable: false),
-                    Hash = table.Column<string>(type: "varchar(60)", unicode: false, maxLength: 60, nullable: false),
+                    Password = table.Column<string>(type: "varchar(60)", unicode: false, maxLength: 60, nullable: false),
                     Email = table.Column<string>(type: "varchar(70)", unicode: false, maxLength: 70, nullable: false),
                     AccountCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     Active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -25,6 +25,28 @@ namespace ToDoApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RefreshToken",
+                schema: "ToDoApp",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(36)", unicode: false, maxLength: 36, nullable: false, defaultValueSql: "NEWID()"),
+                    Token = table.Column<string>(type: "varchar(32)", unicode: false, maxLength: 32, nullable: false),
+                    ValidUntil = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshToken_User_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "ToDoApp",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,7 +80,8 @@ namespace ToDoApp.Data.Migrations
                     Id = table.Column<string>(type: "varchar(36)", unicode: false, maxLength: 36, nullable: false, defaultValueSql: "NEWID()"),
                     Active = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsFinished = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    ToDoId = table.Column<string>(type: "varchar(36)", nullable: false)
+                    ToDoId = table.Column<string>(type: "varchar(36)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,6 +94,12 @@ namespace ToDoApp.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshToken_UserId",
+                schema: "ToDoApp",
+                table: "RefreshToken",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Task_ToDoId",
@@ -101,6 +130,10 @@ namespace ToDoApp.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "RefreshToken",
+                schema: "ToDoApp");
+
             migrationBuilder.DropTable(
                 name: "Task",
                 schema: "ToDoApp");

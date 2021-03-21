@@ -12,6 +12,7 @@ namespace ToDoApp.Data.Entities
         public bool IsFinished { get; set; }
         public ToDo ToDo { get; set; }
         public string ToDoId { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 
     public class TaskConfiguration : EntityConfiguration<Task>
@@ -33,7 +34,7 @@ namespace ToDoApp.Data.Entities
                 .WithMany()
                 .HasForeignKey(e => e.ToDoId)
                 .IsRequired();
-                
+
         }
     }
 }

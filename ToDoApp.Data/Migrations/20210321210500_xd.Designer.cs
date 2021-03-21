@@ -10,8 +10,8 @@ using ToDoApp.Data;
 namespace ToDoApp.Data.Migrations
 {
     [DbContext(typeof(ToDoAppContext))]
-    [Migration("20210309183115_AddRefreshTokens")]
-    partial class AddRefreshTokens
+    [Migration("20210321210500_xd")]
+    partial class xd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,9 @@ namespace ToDoApp.Data.Migrations
                         .HasColumnType("varchar(36)")
                         .HasColumnName("Id")
                         .HasDefaultValueSql("NEWID()");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsFinished")
                         .ValueGeneratedOnAdd()

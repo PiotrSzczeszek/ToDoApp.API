@@ -21,6 +21,7 @@ namespace ToDoApp.Infrastracture.Services
 
         public async Task<bool> AddTask(Data.Entities.Task task)
         {
+            task.CreatedAt = DateTime.Now;
             return await _crudService.CreateAsync(task);
         }
 
@@ -31,7 +32,7 @@ namespace ToDoApp.Infrastracture.Services
 
         public async Task<IEnumerable<Data.Entities.Task>> GetTasks(string ToDoID)
         {
-            return await _crudService.GetEntities.Where(x => x.ToDoId == ToDoID).ToListAsync();
+            return await _crudService.GetEntities.Where(x => x.ToDoId == ToDoID).OrderByDescending(x => x.CreatedAt).ToListAsync();
         }
 
         public async Task<bool> RemoveTask(string ID)

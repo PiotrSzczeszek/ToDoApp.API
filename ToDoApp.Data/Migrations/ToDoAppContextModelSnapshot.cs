@@ -60,6 +60,9 @@ namespace ToDoApp.Data.Migrations
                         .HasColumnName("Id")
                         .HasDefaultValueSql("NEWID()");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsFinished")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
